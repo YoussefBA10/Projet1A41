@@ -8,9 +8,9 @@
 #include <SDL/SDL_ttf.h> 
 #include <string.h>
 
-int volume ;
+int vol ;
 int done ;
-void menu (SDL_Surface *screen, int volume);
+void menu (SDL_Surface *screen, int vol);
 void options(SDL_Surface *screen);
 
 #endif // HEADER_H_INCLUDED

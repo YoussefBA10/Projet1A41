@@ -1,13 +1,13 @@
 #include "header.h"
 
-void menu (SDL_Surface *screen, int volume){
+void menu (SDL_Surface *screen, int vol){
 SDL_Init(SDL_INIT_VIDEO);
 SDL_Surface *screen=NULL;
 screen=SDL_SetVideoMode(1920,1080,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
 SDL_WM_SetCaption("Unlifted Curse",NULL);
 
 SDL_Surface *background=NULL;
-background=IMG_Load("game/backgroundMenu.png");
+background=IMG_Load("Menu/backgroundMenu.png");
 SDL_Rect background_pos;
 background_pos.x=0;
 background_pos.y=0;
@@ -16,7 +16,7 @@ background_pos.y=0;
 //introduction musique
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,1024);//1 -> mono ** 2 -> sterio
     Mix_Music *music;
-    music= Mix_LoadMUS("menu/background.mp3");
+    music= Mix_LoadMUS("Menu/Immortal.mp3");
     Mix_VolumeMusic(volume);
     Mix_PlayMusic(music,-1);//-1 play till the program ends ** n number of times
 
@@ -30,20 +30,20 @@ background_pos.y=0;
     SDL_Event event;
     int ng=1,op=0,ex=0,st=0,t,save;
     //chargement de bouton et image
-    playgame[0]=IMG_Load("game/play-normal.png");
-    story[0]=IMG_Load("game/story-normal.png");
-    option[0]=IMG_Load("game/option-normal.png");
-    option[2]=IMG_Load("game/option-clicked.png");
-    option[1]=IMG_Load("game/option-selected.png");;
-    exit[0]=IMG_Load("game/exit-normal.png");
-    playgame[1]=IMG_Load("game/play-selected.png");
-    playgame[2]=IMG_Load("game/play-clicked.png");
-    exit[1]=IMG_Load("game/exit-selected.png");
-    exit[2]=IMG_Load("game/exit-clicked.png");
-    story[1]=IMG_Load("game/story-selected.png");
-    story[2]=IMG_Load("game/story-clicked.png");
+    playgame[0]=IMG_Load("Menu/play-normal.png");
+    story[0]=IMG_Load("Menu/story-normal.png");
+    option[0]=IMG_Load("Menu/option-normal.png");
+    option[2]=IMG_Load("Menu/option-selected.png");
+    option[1]=IMG_Load("Menu/option-selected.png");;
+    exit[0]=IMG_Load("Menu/exit-normal.png");
+    playgame[1]=IMG_Load("Menu/play-selected.png");
+    playgame[2]=IMG_Load("Menu/play-selected.png");
+    exit[1]=IMG_Load("Menu/exit-selected.png");
+    exit[2]=IMG_Load("Menu/exit-selected.png");
+    story[1]=IMG_Load("Menu/story-selected.png");
+    story[2]=IMG_Load("Menu/story-selected.png");
 
-  
+
 
  int done=1;
     while (done)

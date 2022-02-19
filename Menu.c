@@ -14,7 +14,7 @@ Mix_Music *music;
 Mix_Chunk *bref;
 bref=Mix_LoadWAV("Game/Menu/Bref.mp3");
 SDL_Surface *screen=NULL,*image=NULL,*logo=NULL;
-music= Mix_LoadMUS("Game/Menu/background-music.mp3");
+music= Mix_LoadMUS("Game/Menu/Immortal.mp3");
 Mix_VolumeMusic(vol);
 Mix_PlayMusic(music,-1);
 

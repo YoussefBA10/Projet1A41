@@ -1,0 +1,2 @@
+game: main.c Menu.c Option.c header.h
+	gcc main.c Menu.c Option.c header.h -o game -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer

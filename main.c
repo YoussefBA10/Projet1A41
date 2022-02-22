@@ -26,7 +26,7 @@ return 1;
 
 
 while(done){
-menu(&screen,vol);
+if (menu(&screen,vol)==1) done=0;
 }
 
 

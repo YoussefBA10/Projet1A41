@@ -7,26 +7,26 @@
 #include"header.h"
 int options(SDL_Surface *screen, int vol ) {
 int done=1;
-Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,1024);
+//Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,1024);
 SDL_Rect pos,poslogo,posmd,posvol,possg,posrt,posbar,posmod;
 //son
 //int vol=100;
-Mix_Music *music;
+//Mix_Music *music;
 Mix_Chunk *bref;
 bref=Mix_LoadWAV("Game/Menu/Bref.wav");
 SDL_Surface  *image=NULL,*Option=NULL; //*screen=NULL
-music= Mix_LoadMUS("Game/Menu/background-music.mp3");
+//music= Mix_LoadMUS("Game/Menu/background-music.mp3");
 //Mix_VolumeMusic(vol);
-Mix_PlayMusic(music,-1);
+//Mix_PlayMusic(music,-1);
 
-SDL_Init(SDL_INIT_VIDEO);
+//SDL_Init(SDL_INIT_VIDEO);
 //full screen
 
 if (SDL_Init(SDL_INIT_VIDEO) !=0) {
 printf("Erreur : %s \n ",SDL_GetError());
 return 1;
 }
-screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
+screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_FULLSCREEN);
 
 
 if (screen==NULL)
@@ -181,6 +181,7 @@ Mix_VolumeMusic(vol);
 
                     case SDLK_ESCAPE:
                     done=0;
+                    return 1;
                     break;
                case SDLK_RIGHT:
                     if ((br<4) &&(t==0) && (vl==1))
@@ -188,18 +189,20 @@ Mix_VolumeMusic(vol);
                                    br=br+1;
                                    vol=vol+25;
                                    t=1;
+                                   md=0;
                     }
                     if ((mod==0) && (t==0) && (md==1))
                     {
                         mod=mod+1;
-                        screen=SDL_SetVideoMode(800,600,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_RESIZABLE);
+                        screen=SDL_SetVideoMode(800,600,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
                         t=1;
                     }
                     if ((mod==1) && (t==0) && (md=1))
                     {
                         mod=mod-1;
-                        screen=SDL_SetVideoMode(1300,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_RESIZABLE);
+                        screen=SDL_SetVideoMode(1300,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_FULLSCREEN);
                         t=1;
+                        md=0;
                     }
 
                    break;
@@ -208,19 +211,21 @@ Mix_VolumeMusic(vol);
                     {
                                    br=br-1;
                                    vol=vol-25;
-                                   t=1;
+                                   t=1;  md=0;
                     }
                     if ((mod==0) && (t==0) && (md==1))
                     {
                         mod=mod+1;
-                        screen=SDL_SetVideoMode(800,600,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_RESIZABLE);
+                        screen=SDL_SetVideoMode(800,600,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
                         t=1;
+                        md=1;
                     }
                     if ((mod==1) && (t==0) && (md=1))
                     {
                         mod=mod-1;
-                        screen=SDL_SetVideoMode(1300,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_RESIZABLE);
+                        screen=SDL_SetVideoMode(1300,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_FULLSCREEN);
                         t=1;
+                        md=0;
                     }
 
                    break;
@@ -229,7 +234,7 @@ Mix_VolumeMusic(vol);
                case SDLK_RETURN:
                     if(rt==1)
                     {
-                        menu(&screen,vol);
+                        return 1;
                     }
 
 
@@ -278,7 +283,7 @@ SDL_FreeSurface(Return[1]);
 Mix_FreeChunk(bref);
 
 
-return 0;
+return 1;
 
 
 //SDL_Quit();

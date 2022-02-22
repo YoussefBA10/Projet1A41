@@ -4,9 +4,9 @@
 #include"SDL/SDL_image.h"
 #include"SDL/SDL_ttf.h"
 #include"SDL/SDL_mixer.h"
-//#include"header.h"
+#include"header.h"
 int menu(SDL_Surface *screen,int vol) {
-int done=1 ;
+int done=1;
 
 int br;
 if (vol==25)
@@ -36,7 +36,7 @@ if (SDL_Init(SDL_INIT_VIDEO) !=0) {
 printf("Erreur : %s \n ",SDL_GetError());
 return 1;
 }
-screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
+screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_FULLSCREEN);
 
 
 if (screen==NULL)
@@ -79,7 +79,7 @@ posng.x=555;
 posng.y=285;
 
 while (done){
-Mix_PlayChannel(-1, bref, 0);
+Mix_PlayChannel(-1, bref, 1);
 SDL_BlitSurface(image,NULL,screen,&pos);
 SDL_BlitSurface(logo,NULL,screen,&poslogo);
         SDL_BlitSurface(option[op],NULL,screen,&posop);
@@ -92,11 +92,11 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
         {
             switch(event.type)
             {
-            /*case SDL_QUIT :
-               // if (quit(screen)==1)
-                    done=0;
+           /* case SDL_QUIT :
+                if (quit(screen)==1)
+                    return 1;
                 break;
-
+*/
             //avec clavier */
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -192,7 +192,8 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                     break;
 
                     case SDLK_ESCAPE:
-                    done=0;
+                if (quit(screen)==1)
+                    return 1;
                     break;
 
 
@@ -204,7 +205,7 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                         SDL_Delay(100);
 
                     //  level_one();
-                        //return PLAY_GAME;
+                        //return PLAY_GAME; 
                     }*/
 
 
@@ -214,17 +215,22 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                         SDL_Flip(screen);
                         SDL_Delay(100);
 
-                      // if (quit(screen)==1)
-                            done = 0;
+                if (quit(screen)==1)
+                    return 1;
 
                     }
                      if (op==1)
-                      options(&screen,vol);
+                      {
+                      if (options(&screen,vol)==1)
+                        t=0;
+                   
+                      }
+                      if (st==1)
+                       {
+                      if (Story(&screen)==1)
+                        t=0;
+                       }
                     break;
-
-                    /*  if (st==1)
-                      story(screen);
-                    break;*/
 
 
 }
@@ -275,7 +281,7 @@ Mix_FreeChunk(bref);
 //SDL_Quit();
 
 
-return 0;
+return 0; 
 
 
 

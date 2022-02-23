@@ -87,6 +87,7 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
         SDL_BlitSurface(playgame[ng],NULL,screen,&posng);
         SDL_BlitSurface(exit[ex],NULL,screen,&posex);
         SDL_Flip(screen);
+
         t=0;
         if (SDL_WaitEvent(&event))
         {
@@ -205,7 +206,7 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                         SDL_Delay(100);
 
                     //  level_one();
-                        //return PLAY_GAME; 
+                        //return PLAY_GAME;
                     }*/
 
 
@@ -213,20 +214,24 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                     {
                         SDL_BlitSurface(exit[2],NULL,screen,&pos);
                         SDL_Flip(screen);
-                        SDL_Delay(100);
-
+                        SDL_Delay(500);
+                if (quit(screen)==0)
+                    t=0;
                 if (quit(screen)==1)
-                    return 1;
+                    {SDL_Delay(400);
+                    return 1;}
 
                     }
                      if (op==1)
                       {
+                        SDL_Delay(400);
                       if (options(&screen,vol)==1)
                         t=0;
-                   
+
                       }
                       if (st==1)
                        {
+                        SDL_Delay(400);
                       if (Story(&screen)==1)
                         t=0;
                        }
@@ -258,8 +263,42 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                                     {
                                         ex=1;
                                     }
+   break;
+            case SDL_MOUSEBUTTONDOWN:
+                if (event.button.button==SDL_BUTTON_LEFT)
+                {
+                    if (ng==1)
+                    {
+                        //level_one();
+                        //SDL_Delay (100);
 
-}
+                        //return Play_GAME;
+                    }
+
+                    else if (op==1)
+                        SDL_Delay(400);
+                      if (options(&screen,vol)==1)
+                        t=0;
+
+                      }
+                 else if (st==1)
+                    {
+                        SDL_Delay(400);
+                      if (Story(&screen)==1)
+                        t=0;
+                    }
+                    else if (ex==1)
+                    {
+                        if (quit(screen)==1)
+                            return 1;
+                    }
+
+                break;
+
+
+            }
+
+
 }
 }
 
@@ -281,7 +320,7 @@ Mix_FreeChunk(bref);
 //SDL_Quit();
 
 
-return 0; 
+return 0;
 
 
 

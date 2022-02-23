@@ -10,12 +10,11 @@ int vol=100,done=1;
 SDL_Surface *screen=NULL;
 SDL_Init(SDL_INIT_VIDEO);
 //full screen
-
 if (SDL_Init(SDL_INIT_VIDEO) !=0) {
 printf("Erreur : %s \n ",SDL_GetError());
 return 1;
 }
-screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
+screen=SDL_SetVideoMode(1360,760,32,SDL_HWSURFACE|SDL_DOUBLEBUF |SDL_FULLSCREEN);
 
 
 if (screen==NULL)
@@ -26,7 +25,13 @@ return 1;
 
 
 while(done){
-if (menu(&screen,vol)==1) done=0;
+              if (welcome(&screen)==1)
+                {
+
+                if (menu(&screen,vol)==1) done=0;
+
+                }
+
 }
 
 

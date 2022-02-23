@@ -199,15 +199,16 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
 
 
                case SDLK_RETURN:
-                   /* if (ng==1)
+                    if (ng==1)
                     {
                         SDL_BlitSurface(playgame[2],NULL,screen,&pos);
                         SDL_Flip(screen);
                         SDL_Delay(100);
 
-                    //  level_one();
+                     if(game(&screen)==1);
+                       t=1;
                         //return PLAY_GAME;
-                    }*/
+                    }
 
 
                     if (ex==1)
@@ -216,7 +217,7 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                         SDL_Flip(screen);
                         SDL_Delay(500);
                 if (quit(screen)==0)
-                    t=0;
+                    t=1;
                 if (quit(screen)==1)
                     {SDL_Delay(400);
                     return 1;}
@@ -269,10 +270,9 @@ SDL_BlitSurface(logo,NULL,screen,&poslogo);
                 {
                     if (ng==1)
                     {
-                        //level_one();
-                        //SDL_Delay (100);
-
-                        //return Play_GAME;
+                        if (game(&screen)==1)
+                        SDL_Delay (100);
+                        t=0;
                     }
 
                     else if (op==1)

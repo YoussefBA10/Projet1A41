@@ -15,5 +15,6 @@ int options(SDL_Surface *screen,int vol);
 int Story(SDL_Surface *screen);
 int quit(SDL_Surface *screen);
 int welcome(SDL_Surface *screen);
+int game(SDL_Surface *screen);
 
 #endif // HEADER_H_INCLUDED

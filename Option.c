@@ -181,6 +181,7 @@ Mix_VolumeMusic(vol);
 
                     case SDLK_ESCAPE:
                     done=0;
+                    SDL_Delay(400);
                     return 1;
                     break;
                case SDLK_RIGHT:
@@ -234,6 +235,7 @@ Mix_VolumeMusic(vol);
                case SDLK_RETURN:
                     if(rt==1)
                     {
+                        SDL_Delay(400);
                         return 1;
                     }
 
@@ -263,6 +265,17 @@ Mix_VolumeMusic(vol);
                                     {
                                         rt=1;
                                     }
+    break;
+           case SDL_MOUSEBUTTONDOWN:
+                if (event.button.button==SDL_BUTTON_LEFT)
+                {
+                    if(rt==1)
+                    {
+                        SDL_Delay(400);
+                        return 1;
+                    }
+                }
+             break;
 
 }
 }
